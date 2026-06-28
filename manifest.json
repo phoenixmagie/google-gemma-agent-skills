@@ -1,0 +1,10 @@
+{
+  "name": "Gemma Skills by Phoenixmagie",
+  "version": "1.0",
+  "skills": [
+    {
+      "name": "NoteManager",
+      "url": "https://phoenixmagie.github.io/google-gemma-agent-skills/note/"
+    }
+  ]
+}
