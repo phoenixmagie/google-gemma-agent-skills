@@ -1,5 +1,8 @@
-# NoteManager
-Ein Skill für Gemma, um Textnotizen als .txt-Dateien auf dem Gerät zu speichern.
+---
+name: NoteManager
+description: Ein Tool zum Erstellen und Speichern von Textnotizen auf dem Gerät.
+version: 1.0
+---
 
-## Funktionen
-- save_note(filename, content): Speichert eine Notiz.
+# NoteManager
+Dieser Skill erlaubt es Gemma, Dateien im .txt Format zu schreiben.
