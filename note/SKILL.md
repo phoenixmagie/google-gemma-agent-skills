@@ -1,7 +1,7 @@
 ---
 name: NoteManager
 description: Erstelle und speichere Notizen über eine Weboberfläche.
-url: https://raw.githubusercontent.com/[DEIN_USERNAME]/[DEIN_REPO]/main/note/index.html
+url: https://raw.githubusercontent.com/phoenixmagie/google-gemma-agent-skills/main/note/index.html
 ---
 
 # NoteManager
