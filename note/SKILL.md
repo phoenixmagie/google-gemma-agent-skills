@@ -1,8 +1,8 @@
 ---
 name: NoteManager
-description: Speicher-Tool für Textdateien.
-url: index.html
+description: Ein MCP-Tool zum Speichern und Lesen von Textdateien.
 ---
 # NoteManager
-Um eine Datei zu speichern, schreibe: "Speichere [Inhalt] in Datei [Name]".
-Der Agent wird den Web-Dialog für dich öffnen.
+Dieser Skill bietet Dateiverwaltung via MCP.
+- Verwende `save_note` mit den Parametern `filename` und `content`.
+- Verwende `read_note` ohne Parameter.
