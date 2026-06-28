@@ -1,0 +1,27 @@
+{
+  "name": "NoteManager",
+  "tools": [
+    {
+      "name": "save_note",
+      "description": "Speichert eine Notiz als Textdatei.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "description": "Name der Datei" },
+          "content": { "type": "string", "description": "Inhalt der Notiz" }
+        },
+        "required": ["filename", "content"]
+      }
+    },
+    {
+      "name": "read_note",
+      "description": "Liest eine Textdatei ein.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "description": "Name der Datei" }
+        }
+      }
+    }
+  ]
+}
