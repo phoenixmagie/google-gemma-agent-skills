@@ -1,17 +1,28 @@
 {
   "name": "NoteManager",
-  "description": "Ein Tool zum Erstellen und Speichern von Textnotizen.",
+  "version": "1.0",
+  "description": "Ein Tool zum Erstellen, Speichern und Lesen von Notizen.",
   "tools": [
     {
       "name": "save_note",
-      "description": "Speichert eine Notiz als Textdatei.",
+      "description": "Speichert Text als .txt Datei.",
       "parameters": {
         "type": "object",
         "properties": {
-          "filename": { "type": "string" },
-          "content": { "type": "string" }
+          "filename": { "type": "string", "description": "Dateiname" },
+          "content": { "type": "string", "description": "Notizinhalt" }
         },
         "required": ["filename", "content"]
+      }
+    },
+    {
+      "name": "read_note",
+      "description": "Öffnet den Dateimanager, um eine .txt Datei zu lesen.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "description": "Optionaler Name der Datei" }
+        }
       }
     }
   ],
