@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        // Diese Funktion wird vom System als Web-Action erkannt
+        window.executeSave = async (filename, content) => {
+            const handle = await window.showSaveFilePicker({
+                suggestedName: filename.endsWith('.txt') ? filename : `${filename}.txt`
+            });
+            const writable = await handle.createWritable();
+            await writable.write(content);
+            await writable.close();
+            return "SUCCESS";
+        };
+    </script>
+</body>
+</html>
