@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        // Hier kopierst du deine logic.js Logik hinein
+        window.agentTools = {
+            save_note: async function(filename, content) {
+                try {
+                    const handle = await window.showSaveFilePicker({ suggestedName: filename.endsWith('.txt') ? filename : `${filename}.txt` });
+                    const writable = await handle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    return JSON.stringify({ status: "success" });
+                } catch (err) { return JSON.stringify({ status: "error", message: err.message }); }
+            },
+            read_note: async function() {
+                try {
+                    const [handle] = await window.showOpenFilePicker();
+                    const file = await handle.getFile();
+                    return JSON.stringify({ status: "success", content: await file.text() });
+                } catch (err) { return JSON.stringify({ status: "error", message: err.message }); }
+            }
+        };
+        console.log("NoteManager geladen!");
+    </script>
+</body>
+</html>
