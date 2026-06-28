@@ -3,22 +3,14 @@
   "tools": [
     {
       "name": "save_note",
-      "description": "Speichert Text als .txt Datei.",
+      "description": "Bereitet den Text für das Speichern vor.",
       "inputSchema": {
         "type": "object",
         "properties": {
-          "filename": { "type": "string", "description": "Dateiname" },
-          "content": { "type": "string", "description": "Inhalt" }
+          "filename": { "type": "string", "description": "Name der Datei" },
+          "content": { "type": "string", "description": "Inhalt der Notiz" }
         },
         "required": ["filename", "content"]
-      }
-    },
-    {
-      "name": "read_note",
-      "description": "Liest eine Textdatei.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {}
       }
     }
   ]
