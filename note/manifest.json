@@ -1,0 +1,19 @@
+{
+  "name": "NoteManager",
+  "description": "Ein Tool zum Erstellen und Speichern von Textnotizen.",
+  "tools": [
+    {
+      "name": "save_note",
+      "description": "Speichert eine Notiz als Textdatei.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string" },
+          "content": { "type": "string" }
+        },
+        "required": ["filename", "content"]
+      }
+    }
+  ],
+  "entry": "logic.js"
+}
