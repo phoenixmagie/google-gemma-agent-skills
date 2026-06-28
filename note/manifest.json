@@ -1,0 +1,25 @@
+{
+  "mcp_version": "1.0",
+  "tools": [
+    {
+      "name": "save_note",
+      "description": "Speichert Text als .txt Datei.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "description": "Dateiname" },
+          "content": { "type": "string", "description": "Inhalt" }
+        },
+        "required": ["filename", "content"]
+      }
+    },
+    {
+      "name": "read_note",
+      "description": "Liest eine Textdatei.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ]
+}
