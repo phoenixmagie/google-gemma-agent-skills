@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Seite nicht gefunden</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        h1 {
+            font-size: 5rem;
+            color: #e94560;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            padding: 12px 24px;
+            background-color: #0f3460;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #e94560;
+        }
+
+        /* Spielbereich */
+        #game-container {
+            width: 90%;
+            max-width: 400px;
+            height: 300px;
+            background-color: #16213e;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+            border: 2px solid #0f3460;
+        }
+        #player {
+            width: 50px;
+            height: 50px;
+            background-color: #e94560;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 10px;
+            left: 175px;
+        }
+        #alien {
+            font-size: 2.5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+        .score-board {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        /* Handy-Optimierung */
+        @media (max-width: 600px) {
+            h1 { font-size: 3.5rem; }
+            p { font-size: 1rem; padding: 0 1rem; }
+            #game-container { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>404</h1>
+    <p>Hoppla! Diese Seite existiert leider nicht. Vertreibe dir die Zeit mit unserem Minigame!</p>
+    
+    <!-- Link zur Startseite -->
+    <a href="index.html" class="btn">Zurück zur Startseite</a>
+
+    <!-- Minigame Bereich -->
+    <div class="score-board">Punkte: <span id="score">0</span></div>
+    <div id="game-container">
+        <div id="player"></div>
+        <div id="alien">👽</div>
+    </div>
+    <p style="font-size: 0.9rem; margin-top: 0.5rem; color: #8892b0;">(Tippe/Klicke auf das Alien!)</p>
+
+    <script>
+        const container = document.getElementById('game-container');
+        const player = document.getElementById('player');
+        const alien = document.getElementById('alien');
+        const scoreDisplay = document.getElementById('score');
+
+        let score = 0;
+        let alienX = 0;
+        let alienY = 0;
+        let alienSpeed = 2;
+        let gameInterval;
+
+        // Steuerung für Smartphone (Touch) und PC (Maus)
+        window.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            let x = e.clientX - rect.left - 25; // 25 ist die halbe Spielerbreite
+            if(x < 0) x = 0;
+            if(x > rect.width - 50) x = rect.width - 50;
+            player.style.left = x + 'px';
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            const rect = container.getBoundingClientRect();
+            let x = e.touches[0].clientX - rect.left - 25;
+            if(x < 0) x = 0;
+            if(x > rect.width - 50) x = rect.width - 50;
+            player.style.left = x + 'px';
+        });
+
+        function moveAlien() {
+            alienY += alienSpeed;
+            alien.style.top = alienY + 'px';
+            alien.style.left = alienX + 'px';
+
+            // Alien fangen
+            const alienRect = alien.getBoundingClientRect();
+            const playerRect = player.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+
+            if (
+                alienRect.bottom >= playerRect.top &&
+                alienRect.top <= playerRect.bottom &&
+                alienRect.right >= playerRect.left &&
+                alienRect.left <= playerRect.right
+            ) {
+                score += 10;
+                scoreDisplay.textContent = score;
+                resetAlien();
+            }
+
+            // Alien entwischt
+            if (alienY > containerRect.height - 50) {
+                alert('Game Over! Punkte: ' + score);
+                score = 0;
+                scoreDisplay.textContent = score;
+                resetAlien();
+            }
+        }
+
+        function resetAlien() {
+            alienY = 0;
+            alienX = Math.floor(Math.random() * (container.clientWidth - 50));
+            
+            // Mit der Zeit wird das Spiel schneller
+            if(score > 0 && score % 50 === 0) alienSpeed += 1;
+        }
+
+        // Alien platzieren und Spiel starten
+        resetAlien();
+        setInterval(moveAlien, 20);
+    </script>
+</body>
+</html>
